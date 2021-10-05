@@ -1,0 +1,121 @@
+#include<stdio.h>
+
+class Node{
+private:
+	int elem;
+	class Node* next;
+public:
+	Node(int x, class Node* nxt) {elem=x;next=nxt;}
+	Node(int x) {elem=x;next=NULL;}
+	Node() {next=NULL;}
+friend class Linkedlist;
+};
+
+class Linkedlist{
+	class Node* start;
+	int length;
+public:
+	Linkedlist();
+	
+	void add(int x);
+	void remove();
+	int isEmpty();
+	int len();
+	void print();
+};
+
+int Linkedlist::len(){
+	return length;
+}
+
+void Linkedlist::print(){
+	class Node* iter=start;
+	int p=len();
+	for (int i=0;i<p;i++){
+		printf("%d ",iter->elem);
+		iter=iter->next;
+	}
+}
+
+Linkedlist::Linkedlist(){
+	start=NULL;
+	length=0;
+}
+
+
+void Linkedlist::add(int x){
+	int p=len();
+	if (p==0){
+		start=new Node(x);
+	}
+	else if (p==1){
+		class Node* temp=start;
+		start=new Node(x,temp);
+		temp->next=start;
+	}
+	else{
+		class Node* temp=start;
+		class Node* temp_2;
+		temp->next=temp_2;
+		start=new Node(x,temp_2);
+		temp->next=start;
+	}
+	length++;
+}
+
+void Linkedlist::remove(){
+	int p=len();
+	if (p>=3){
+		class Node* temp;
+		class Node* temp_2;
+		start->next=temp;
+		temp->next=temp_2;
+		start->next=temp_2;
+		delete temp;
+		length--;
+	}
+	else if (p==2){
+		class Node* temp;
+		start->next=temp;
+		delete temp;
+		length--;
+	}
+	else if (p==1){
+		class Node* temp=start;
+		delete temp;
+		length--;
+	}
+	else{
+		return;
+	}
+}
+
+
+int Linkedlist::isEmpty(){
+	if (start==NULL) return 1;
+	else return 0;
+}
+
+
+int main(){
+
+	class Linkedlist ll;
+	ll.add(10);
+	ll.add(20);
+	ll.add(30);
+	ll.add(4);
+	ll.add(5);
+	ll.add(6);
+	int p=ll.len();
+	printf("%d\n",p);	
+
+	if (ll.isEmpty()) {printf("Yes! the given list is empty.\n");}
+	else {printf("No! the list is not empty.\n");}
+
+	ll.print();
+	return 0;
+
+}
+
+
+
