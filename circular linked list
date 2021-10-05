@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include "circularll.h" 
+
+int Linkedlist::len(){
+	return length;
+}
+
+void Linkedlist::print(){
+	class Node* iter=start;
+	int p=len();
+	for (int i=0;i<p;i++){
+		printf("%d ",iter->elem);
+		iter=iter->next;
+	}
+}
+
+Linkedlist::Linkedlist(){
+	start=NULL;
+	length=0;
+}
+
+
+void Linkedlist::add(int x){
+	int p=len();
+	if (p==0){
+		start=new Node(x);
+	}
+	else if (p==1){
+		class Node* temp=start;
+		start=new Node(x,temp);
+		temp->next=start;
+	}
+	else{
+		class Node* temp=start;
+		start=new Node(x,temp->next);
+		temp->next=start;
+	}
+	length++;
+}
+
+void Linkedlist::remove(){
+	int p=len();
+	if (p>=3){
+		class Node* temp=start->next;
+		start->next=temp->next;
+		delete temp;
+		length--;
+	}
+	else if (p==2){
+		class Node* temp=start->next;
+		start->next=NULL;
+		delete temp;
+		length--;
+	}
+	else if (p==1){
+		class Node* temp=start;
+		delete temp;
+		start=NULL;
+		length--;
+	}
+	else{
+		return;
+	}
+}
+
+
+int Linkedlist::isEmpty(){
+	if (start==NULL) return 1;
+	else return 0;
+}
+
