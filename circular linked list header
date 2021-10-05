@@ -1,0 +1,24 @@
+#include<stdio.h>
+class Node{
+private:
+	int elem;
+	class Node* next;
+public:
+	Node(int x, class Node* nxt) {elem=x;next=nxt;}
+	Node(int x) {elem=x;next=NULL;}
+	Node() {next=NULL;}
+friend class Linkedlist;
+};
+
+class Linkedlist{
+	class Node* start;
+	int length;
+public:
+	Linkedlist();
+	
+	void add(int x);
+	void remove();
+	int isEmpty();
+	int len();
+	void print();
+};
