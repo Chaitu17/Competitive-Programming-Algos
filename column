@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+
+	ll t;
+	cin >> t;
+	for(ll i=0; i<t; ++i) {
+		ll n,m,x;
+		cin >> n >> m >> x;
+		ll rows[n][m];
+		ll num=1;
+		ll p,q;
+		for(ll j=0; j<n; ++j) {
+			for(ll k=0; k<m; ++k) {
+				rows[j][k]=num;
+				num++;
+			}
+		}
+		ll col[n][m];
+		num=1;
+		for(ll j=0; j<m; ++j) {
+			for(ll k=0; k<n; ++k) {
+				col[k][j]=num;
+				num++;
+			}
+		}
+		for(ll j=0; j<n; ++j) {
+			for(ll k=0; k<m; ++k) {
+				if(col[j][k]==x) {
+					p=j;
+					q=k;
+					break;
+				}
+			}
+		}
+		cout << rows[p][q] << "\n";
+	}
+	return 0;
+}
+
+
+
+
+
+
